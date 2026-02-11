@@ -31,26 +31,52 @@ tick();
 
 /* ================= GLOBOS ================= */
 const bg = document.getElementById("balloons-bg");
-const BALLOONS = 18;
+const BALLOONS = 25;
 
-if (bg) {
+function createBalloons() {
+  if (!bg) return;
+
+  bg.innerHTML = "";
+
+  const isMobile = window.innerWidth <= 600;
+
   for (let i = 0; i < BALLOONS; i++) {
     const b = document.createElement("div");
     b.className = "balloon";
 
-    const size = 40 + Math.random() * 50;
-    const duration = 18 + Math.random() * 15;
+    const size = isMobile
+      ? 25 + Math.random() * 25
+      : 40 + Math.random() * 40;
+
+    const duration = 20 + Math.random() * 10;
     const delay = Math.random() * 20;
 
     b.style.width = size + "px";
     b.style.height = size * 1.3 + "px";
-    b.style.left = Math.random() * 100 + "vw";
     b.style.animationDuration = duration + "s";
     b.style.animationDelay = "-" + delay + "s";
+
+    if (isMobile) {
+      // 🔥 SOLO LADOS (nunca centro)
+      if (Math.random() < 0.5) {
+        // LADO IZQUIERDO (0% - 10%)
+        b.style.left = Math.random() * 10 + "vw";
+      } else {
+        // LADO DERECHO (90% - 100%)
+        b.style.left = 90 + Math.random() * 10 + "vw";
+      }
+    } else {
+      // Desktop normal
+      b.style.left = Math.random() * 100 + "vw";
+    }
 
     bg.appendChild(b);
   }
 }
+
+createBalloons();
+window.addEventListener("resize", createBalloons);
+
 
 /* ================= MÚSICA ================= */
 const envelope = document.getElementById("envelope");

@@ -1,122 +1,140 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,600&family=Cormorant+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
-
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Invitación Cumpleaños Dorado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=600">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="🎉 Invitación Cumple Jibita" />
+  <meta property="og:description" content="Estás invitado a una celebración especial ✨ Confirma tu asistencia aquí." />
+  <meta property="og:image" content="https://cumple-jobita.netlify.app/preview.jpg" />
+  <meta property="og:url" content="https://cumple-jobita.netlify.app/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🎉 Invitación Cumple Jibita" />
+  <meta name="twitter:description" content="Confirma tu asistencia ✨" />
+  <meta name="twitter:image" content="https://cumple-jobita.netlify.app/preview.jpg" />
+
+  <title>Invitación Mis 50 - Jobita</title>
+
   <link rel="stylesheet" href="styles.css" />
 
-  
 </head>
 
 <body>
-  <!-- CARTA DORADA -->
-<div id="envelope" class="envelope">
-  <div class="envelope-top"></div>
-  <div class="envelope-body">
-    <div class="bow">🎀</div>
-    <p class="open-text">Haz click para abrir</p>
+
+  <!-- SOBRE DORADO -->
+  <div id="envelope" class="envelope">
+    <div class="envelope-body">
+      <div class="bow">🎀</div>
+      <p class="open-text">Haz click para abrir</p>
+    </div>
   </div>
-</div>
 
+  <!-- FONDO GLOBOS -->
   <div id="balloons-bg"></div>
-<div id="invitation-wrapper" class="hidden">
-<main class="paper">
 
+  <!-- CONTENIDO INVITACIÓN -->
+  <div id="invitation-wrapper" class="hidden">
 
-  <button id="music-btn" class="music-btn">🔊 Activar música</button>
+    <!-- BOTÓN MÚSICA (FIJO) -->
+    <button id="music-btn" class="music-btn">
+      🔊 Activar música
+    </button>
 
-  <!-- PORTADA -->
-  <section class="section hero">
-    <div class="floral">
-      <div class="floral-placeholder">✨</div>
-    </div>
+    <main class="paper">
 
-    <p class="quote">
-      “Celebrar la vida es honrar cada recuerdo y cada sonrisa compartida.”
-    </p>
+      <!-- PORTADA -->
+      <section class="section hero">
 
-    <h2 class="small-title">¡ESTÁS INVITADO!</h2>
+        <p class="quote">
+          “Celebrar la vida es honrar cada recuerdo y cada sonrisa compartida.”
+        </p>
 
-    <h1 class="names">Jobita Iparraguirre</h1>
-    <p class="gold-age">50 AÑOS · ÉPOCA DORADA</p>
+        <h2 class="small-title">Te invito a celebrar ✨</h2>
 
-    <p class="center-text">
-      Acompáñanos a celebrar un cumpleaños muy especial,
-      una etapa llena de experiencias, amor y sabiduría.
-    </p>
-  </section>
+        <h1 class="names">
+          Mis <span class="flip-five">5</span>0
+        </h1>
 
-  <!-- FECHA + COUNTDOWN -->
-  <section class="section">
-    <h2 class="script-title">Mi Cumpleaños</h2>
-    <div class="rings">🎉🎂✨</div>
+        <p class="gold-age">50 AÑOS · ÉPOCA DORADA</p>
 
-    <p class="date">14 de febrero · 20:00 hrs</p>
+        <p class="center-text">
+          Acompáñame a celebrar mis 50 años,
+          una etapa llena de experiencias, amor y sabiduría.
+          Porque la edad es solo un número…
+          y el espíritu siempre puede sentirse de 20 😉✨
+        </p>
 
-    <p class="muted">Falta poco para celebrar</p>
+        <h2 class="script-title">Jobita Iparraguirre</h2>
 
-    <div class="countdown" id="countdown">
-      <div class="cd-box"><span id="d">--</span><small>DÍAS</small></div>
-      <div class="cd-box"><span id="h">--</span><small>HORAS</small></div>
-      <div class="cd-box"><span id="m">--</span><small>MINUTOS</small></div>
-      <div class="cd-box"><span id="s">--</span><small>SEGUNDOS</small></div>
-    </div>
-  </section>
+      </section>
 
-  <!-- CELEBRACIÓN -->
-  <section class="section">
-    <h2 class="script-title">Celebración</h2>
+      <!-- FECHA + COUNTDOWN -->
+      <section class="section">
+        <h2 class="script-title">Mi Cumpleaños</h2>
+        <div class="rings">🎉🎂✨</div>
 
-    <div class="info-block">
-      <p><strong>Hora:</strong> 20:00</p>
+        <p class="date">14 de febrero · 20:00 hrs</p>
 
-      <p><strong>Dirección:</strong> El Estrecho 1828, Peñalolén, Santiago</p>
+        <p class="muted">Falta poco para celebrar</p>
 
+        <div class="countdown" id="countdown">
+          <div class="cd-box"><span id="d">--</span><small>DÍAS</small></div>
+          <div class="cd-box"><span id="h">--</span><small>HORAS</small></div>
+          <div class="cd-box"><span id="m">--</span><small>MINUTOS</small></div>
+          <div class="cd-box"><span id="s">--</span><small>SEGUNDOS</small></div>
+        </div>
+      </section>
 
-      <a class="btn" target="_blank"
-        href="https://www.google.com/maps/search/?api=1&query=El+Estrecho+1828+Peñalolén+Santiago">
+      <!-- CELEBRACIÓN -->
+      <section class="section">
+        <h2 class="script-title">Celebración</h2>
 
-        Ver mapa
-      </a>
-    </div>
-  </section>
-  <section class="adults-only">
-  <h3>Evento solo para adultos</h3>
-  <p>
-  Para disfrutar plenamente de esta celebración,
-  hemos decidido que sea un evento solo para adultos.  
-  Agradecemos mucho su comprensión. ✨
-  </p>
+        <div class="info-block">
+          <p><strong>Hora:</strong> 20:00</p>
+          <p><strong>Dirección:</strong> El Estrecho 1828, Peñalolén, Santiago</p>
 
-</section>
+          <a class="btn" target="_blank"
+             href="https://www.google.com/maps/search/?api=1&query=El+Estrecho+1828+Peñalolén+Santiago">
+            Ver mapa
+          </a>
+        </div>
+      </section>
 
+      <!-- SOLO ADULTOS -->
+      <section class="adults-only">
+        <h3>Evento solo para adultos</h3>
+        <p>
+          Para disfrutar plenamente de esta celebración,
+          hemos decidido que sea un evento solo para adultos.
+          Agradecemos mucho su comprensión. ✨
+        </p>
+      </section>
 
-  <!-- CONFIRMACIÓN -->
-  <section class="section">
-  <div class="confirmacion-box">
-  <input type="text" id="nombre" placeholder="Escribe tu nombre" />
-  <button id="confirmar">Confirmar asistencia</button>
-  <p id="msg"></p>
-</div>
+      <!-- CONFIRMACIÓN -->
+      <section class="section">
+        <div class="confirmacion-box">
+          <input type="text" id="nombre" placeholder="Escribe tu nombre" />
+          <button id="confirmar">Confirmar asistencia</button>
+          <p id="msg"></p>
+        </div>
+      </section>
 
-</section>
+    </main>
 
-  </main>
+  </div>
 
+  <!-- AUDIO -->
   <audio id="bg-music" loop preload="auto">
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
   <script src="script.js"></script>
-</main>
-</div>
 
 </body>
-
 </html>
