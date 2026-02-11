@@ -1,81 +1,149 @@
+/* ================= FECHA OBJETIVO ================= */
 const target = new Date(2026, 1, 14, 20, 0, 0);
 
+function pad(n) {
+  return String(n).padStart(2, "0");
+}
 
-function pad(n){ return String(n).padStart(2,"0"); }
+function tick() {
+  const countdown = document.getElementById("countdown");
+  if (!countdown) return;
 
-function tick(){
   const now = new Date();
-  let diff = target - now;
+  const diff = target - now;
 
-  if(diff < 0){
-    document.getElementById("countdown").innerHTML =
+  if (diff <= 0) {
+    countdown.innerHTML =
       "<p style='text-align:center;font-weight:600;'>¡Hoy celebramos! 🎉✨</p>";
     return;
   }
 
-  const t = Math.floor(diff/1000);
-  document.getElementById("d").textContent = pad(Math.floor(t/86400));
-  document.getElementById("h").textContent = pad(Math.floor(t%86400/3600));
-  document.getElementById("m").textContent = pad(Math.floor(t%3600/60));
-  document.getElementById("s").textContent = pad(t%60);
+  const t = Math.floor(diff / 1000);
+
+  document.getElementById("d").textContent = pad(Math.floor(t / 86400));
+  document.getElementById("h").textContent = pad(Math.floor((t % 86400) / 3600));
+  document.getElementById("m").textContent = pad(Math.floor((t % 3600) / 60));
+  document.getElementById("s").textContent = pad(t % 60);
 }
 
-setInterval(tick,1000);
+setInterval(tick, 1000);
 tick();
 
-/* Slider */
-const memories=document.querySelectorAll(".memory");
-let i=0;
-setInterval(()=>{
-  memories[i].classList.remove("active");
-  i=(i+1)%memories.length;
-  memories[i].classList.add("active");
-},3000);
-
-/* Música */
-const music=document.getElementById("bg-music");
-const btn=document.getElementById("music-btn");
-let play=false;
-
-btn.onclick=async()=>{
-  if(!play){
-    await music.play();
-    btn.textContent="🔇 Pausar música";
-  }else{
-    music.pause();
-    btn.textContent="🔊 Activar música";
-  }
-  play=!play;
-};
-/* ===== GLOBOS DORADOS FLOTANDO ===== */
+/* ================= GLOBOS ================= */
 const bg = document.getElementById("balloons-bg");
 const BALLOONS = 18;
 
-for(let i=0;i<BALLOONS;i++){
-  const b = document.createElement("div");
-  b.className = "balloon";
+if (bg) {
+  for (let i = 0; i < BALLOONS; i++) {
+    const b = document.createElement("div");
+    b.className = "balloon";
 
-  const size = 40 + Math.random() * 50;
-  const duration = 18 + Math.random() * 15;
-  const delay = Math.random() * 20;
+    const size = 40 + Math.random() * 50;
+    const duration = 18 + Math.random() * 15;
+    const delay = Math.random() * 20;
 
-  b.style.width = size + "px";
-  b.style.height = size * 1.3 + "px";
-  b.style.left = Math.random() * 100 + "vw";
-  b.style.animationDuration = duration + "s";
-  b.style.animationDelay = "-" + delay + "s";
+    b.style.width = size + "px";
+    b.style.height = size * 1.3 + "px";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.animationDuration = duration + "s";
+    b.style.animationDelay = "-" + delay + "s";
 
-  bg.appendChild(b);
+    bg.appendChild(b);
+  }
 }
-/* ===== APERTURA DE CARTA ===== */
+
+/* ================= MÚSICA ================= */
 const envelope = document.getElementById("envelope");
 const invitation = document.getElementById("invitation-wrapper");
+const music = document.getElementById("bg-music");
+const btnMusic = document.getElementById("music-btn");
 
-envelope.addEventListener("click", () => {
-  envelope.classList.add("open");
+let playing = false;
 
-  setTimeout(() => {
-    envelope.style.display = "none";
-    invitation.classList.remove("hidden");
-  }, 800);
+if (btnMusic && music) {
+  btnMusic.addEventListener("click", async () => {
+    try {
+      if (!playing) {
+        await music.play();
+        music.volume = 0.35;
+        btnMusic.textContent = "🔇 Pausar música";
+      } else {
+        music.pause();
+        btnMusic.textContent = "🔊 Activar música";
+      }
+      playing = !playing;
+    } catch {
+      console.log("Autoplay bloqueado");
+    }
+  });
+}
+
+if (envelope && invitation) {
+  envelope.addEventListener("click", async () => {
+    envelope.classList.add("open");
+
+    try {
+      await music.play();
+      music.volume = 0.35;
+      playing = true;
+      if (btnMusic) btnMusic.textContent = "🔇 Pausar música";
+    } catch {}
+
+    setTimeout(() => {
+      envelope.style.display = "none";
+      invitation.classList.remove("hidden");
+    }, 800);
+  });
+}
+
+/* ================= CONFIRMACIÓN DEFINITIVA ================= */
+
+const WEBAPP_URL =
+  "https://script.google.com/macros/s/AKfycbxZJnaM2kyKEgexqHB3yjG8B7ZBhAmHPIajqFUfexJQv3_FYtcLeQ_DmO1EQTvBJ96Izw/exec";
+
+const nombreInput = document.getElementById("nombre");
+const btnConfirmar = document.getElementById("confirmar");
+const msg = document.getElementById("msg");
+
+// ID único por dispositivo
+let invitacionId = localStorage.getItem("invitacion_id");
+
+if (!invitacionId) {
+  invitacionId = crypto.randomUUID();
+  localStorage.setItem("invitacion_id", invitacionId);
+}
+
+// Si ya confirmó
+if (localStorage.getItem("confirmado")) {
+  btnConfirmar.disabled = true;
+  btnConfirmar.textContent = "✔ Asistencia confirmada";
+  msg.textContent = "🎉 Ya confirmaste tu asistencia";
+}
+
+btnConfirmar.addEventListener("click", () => {
+  const nombre = nombreInput.value.trim();
+
+  if (!nombre) {
+    msg.textContent = "Escribe tu nombre ✍️";
+    return;
+  }
+
+  msg.textContent = "Enviando confirmación...";
+
+  fetch(WEBAPP_URL, {
+    method: "POST",
+    mode: "no-cors", // 👈 IMPORTANTE
+    body: new URLSearchParams({
+      id: invitacionId,
+      nombre: nombre
+    })
+  });
+
+  // No esperamos respuesta (porque CORS la bloquea)
+
+  localStorage.setItem("confirmado", "true");
+
+  btnConfirmar.disabled = true;
+  btnConfirmar.textContent = "✔ Asistencia confirmada";
+  msg.textContent = "🎉 ¡Gracias por confirmar!";
 });

@@ -994,3 +994,92 @@ body, p {
   font-size: clamp(48px, 7vw, 68px);
   color: #000;
 }
+.script-title,
+.quote,
+.script-big {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 2.4rem;
+  color: #000; /* negro elegante */
+  letter-spacing: 0.5px;
+}
+.center-text,
+.info-block p,
+.muted {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #000;
+}
+.names {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #000;
+}
+/* ================= CONFIRMACION ================= */
+
+.confirmacion-box {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* INPUT NOMBRE */
+#nombre {
+  width: 260px;
+  padding: 12px 16px;
+  border-radius: 30px;
+  border: 1.5px solid #d4af37;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fffdf8;
+  transition: all 0.3s ease;
+}
+
+#nombre::placeholder {
+  color: #999;
+}
+
+#nombre:focus {
+  border-color: #b8962e;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* BOTÓN */
+#confirmar {
+  margin-left: 10px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover elegante */
+#confirmar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón deshabilitado */
+#confirmar:disabled {
+  background: #cfcfcf;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* MENSAJE */
+#msg {
+  margin-top: 15px;
+  font-weight: 500;
+  color: #444;
+  font-size: 14px;
+}
